@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Modal, View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+// import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export default function NotaEditor({mostraNotas}) {
 
@@ -8,23 +8,24 @@ export default function NotaEditor({mostraNotas}) {
   const [modalVisivel, setModalVisivel] = useState(false)
 
   async function salvaNota(){
-    const novoId = await geraId()
+    // const novoId = await geraId()
     const umaNota = {
-      id: novoId.toString(),
+      // id: novoId.toString(),
+      id: "1",
       texto: texto,
     }
     console.log(umaNota);
-    await AsyncStorage.setItem(umaNota.id, umaNota.texto)
+    // await AsyncStorage.setItem(umaNota.id, umaNota.texto)
     mostraNotas()
   }
 
-  async function geraId(){
-    const todasChaves = await AsyncStorage.getAllKeys()
-    if(todasChaves <= 0){
-      return 1
-    }
-    return todasChaves.length + 1
-  }
+  // async function geraId(){
+  //   const todasChaves = await AsyncStorage.getAllKeys()
+  //   if(todasChaves <= 0){
+  //     return 1
+  //   }
+  //   return todasChaves.length + 1
+  // }
 
   return(
     <>
