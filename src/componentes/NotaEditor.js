@@ -1,10 +1,16 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Modal, View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native"
 import { Picker } from "react-native-web"
 import { adicionaNota } from "../servicos/Notas"
 // import AsyncStorage from "@react-native-async-storage/async-storage"
 
-export default function NotaEditor({mostraNotas}) {
+export default function NotaEditor({mostraNotas, notaSelecionada}) {
+  useEffect(() => {
+    if(notaSelecionada.id) {
+      preencheModal()
+      setModalVisivel(true)
+    }
+  },[notaSelecionada])
 
   const [titulo, setTitulo] = useState("")
   const [categoria, setCategoria] = useState("Pessoal")
@@ -35,6 +41,12 @@ export default function NotaEditor({mostraNotas}) {
   //   }
   //   return todasChaves.length + 1
   // }
+
+function preencheModal(){
+  setTitulo(notaSelecionada.titulo)
+  setCategoria(notaSelecionada.categoria)
+  setTexto(notaSelecionada.texto)
+}
 
   return(
     <>
