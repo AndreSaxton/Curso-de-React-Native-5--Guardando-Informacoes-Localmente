@@ -48,3 +48,14 @@ export async function buscaNotas(){
         })
     })
 }
+
+export async function filtraNotasPorCategoria(categoria){
+    return new Promise((resolve) => {
+        db.transaction((transaction) => {
+            transaction.executeSql("SELECT * FROM Notas WHERE categoria = ?;", [categoria], (transaction, resultado) => {
+                // resolve(resultado.rows._array);
+                resolve(resultado.rows);
+            })
+        })
+    })
+}
